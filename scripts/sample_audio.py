@@ -38,7 +38,7 @@ from scipy.io import wavfile
 
 sys.path.append("{}/../".format(os.path.dirname(os.path.abspath(__file__))))
 import utils.data_utils as data_utils
-import utils.song_utils as song_utils
+import song_utils as song_utils
 # import utils.train_utils as train_utils
 # import utils.metrics as metrics
 import config

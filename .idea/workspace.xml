@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="596885b4-d0a5-4bf4-bd63-298e797ee9a2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/my-symbolic-music-diffusion.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generate_song_data_beam.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lakh_tfrecords/notesequences_redux.tfrecord" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/lakh_tfrecords/notesequences_reredux.tfrecord" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/decode_dataset_beam.py" beforeDir="false" afterPath="$PROJECT_DIR$/decode_dataset_beam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate_compressed_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_compressed_transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate_song_data_beam.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/mytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mytest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/sample_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sample_audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/transform_encoded_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/transform_encoded_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/data_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/song_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/song_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,31 +44,32 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/generated" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/generated" />
       <recent name="$PROJECT_DIR$/scripts/lakh_tfrecords" />
+      <recent name="$PROJECT_DIR$/generated" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/scripts/out/reredux" />
       <recent name="$PROJECT_DIR$/scripts/musicvae_ckpt" />
       <recent name="$PROJECT_DIR$/scripts/lakh_tfrecords" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.sample_audio">
+  <component name="RunManager" selected="Python.generate_song_data_beam">
     <configuration name="generate_song_data_beam" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="symbolic-music-diffusion-main" />
+      <module name="my-symbolic-music-diffusion" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.8" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -166,9 +179,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.generate_song_data_beam" />
         <item itemvalue="Python.sample_audio" />
         <item itemvalue="Python.train_ncsn" />
-        <item itemvalue="Python.generate_song_data_beam" />
         <item itemvalue="Python.sample_ncsn" />
         <item itemvalue="Python.transform_encoded_data" />
       </list>
@@ -187,7 +200,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -202,6 +215,11 @@
       <workItem from="1684081588808" duration="5537000" />
       <workItem from="1684108170714" duration="860000" />
       <workItem from="1684156530351" duration="14322000" />
+      <workItem from="1684191026764" duration="830000" />
+      <workItem from="1684193580265" duration="1539000" />
+      <workItem from="1684255115007" duration="7611000" />
+      <workItem from="1684338824811" duration="204000" />
+      <workItem from="1684339506893" duration="253000" />
     </task>
     <servers />
   </component>
@@ -209,33 +227,37 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="247" y="224" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1684106085902">
+    <state x="247" y="224" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1684273363326">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="247" y="224" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1684106085902" />
+    <state x="247" y="224" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1684273363326" />
     <state x="378" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1684016768406">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="378" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1684016768406" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1684190050811">
+    <state x="415" y="76" key="#generate_song_data_beam" timestamp="1684272958982">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1684190050811" />
+    <state x="415" y="76" key="#generate_song_data_beam/0.0.1440.900@0.0.1440.900" timestamp="1684272958982" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1684273536054">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1684273536054" />
     <state width="1398" height="303" key="GridCell.Tab.0.bottom/0.23.1440.812@0.23.1440.812" timestamp="1684021521561" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1684190050811">
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1684273536054">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1684190050811" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1684273536054" />
     <state width="1398" height="303" key="GridCell.Tab.0.center/0.23.1440.812@0.23.1440.812" timestamp="1684021521560" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1684190050810">
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1684273536053">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1684190050810" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1684273536053" />
     <state width="1398" height="303" key="GridCell.Tab.0.left/0.23.1440.812@0.23.1440.812" timestamp="1684021521559" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1684190050811">
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1684273536054">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1684190050811" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1684273536054" />
     <state width="1398" height="303" key="GridCell.Tab.0.right/0.23.1440.812@0.23.1440.812" timestamp="1684021521560" />
     <state width="1398" height="241" key="GridCell.Tab.1.bottom" timestamp="1684190050800">
       <screen x="0" y="0" width="1440" height="900" />
@@ -257,19 +279,20 @@
     </state>
     <state width="1398" height="241" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1684190050800" />
     <state width="1398" height="187" key="GridCell.Tab.1.right/0.23.1440.812@0.23.1440.812" timestamp="1684183957993" />
-    <state x="443" y="178" key="SettingsEditor" timestamp="1684189164109">
+    <state x="258" y="23" key="SettingsEditor" timestamp="1684272896182">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="443" y="178" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1684189164109" />
+    <state x="258" y="23" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1684272896182" />
+    <state x="258" y="44" key="SettingsEditor/0.23.1440.812@0.23.1440.812" timestamp="1684255144116" />
     <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1684185318374">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1684185318374" />
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.23.1440.812@0.23.1440.812" timestamp="1684076624843" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1684021632392">
+    <state x="397" y="277" key="com.intellij.ide.util.TipDialog" timestamp="1684339506941">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1684021632392" />
+    <state x="397" y="277" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1684339506941" />
     <state x="378" y="212" width="683" height="476" key="find.popup" timestamp="1684058677037">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -280,7 +303,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/decode_dataset_beam.py</url>
-          <line>69</line>
+          <line>70</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -364,5 +387,6 @@
     <SUITE FILE_PATH="coverage/my_symbolic_music_diffusion$sample_audio.coverage" NAME="sample_audio Coverage Results" MODIFIED="1684189648753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/symbolic_music_diffusion_main$decode_dataset_beam.coverage" NAME="decode_dataset_beam Coverage Results" MODIFIED="1684059436031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/symbolic_music_diffusion_main$train_ncsn.coverage" NAME="train_ncsn Coverage Results" MODIFIED="1684078925989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/my_symbolic_music_diffusion$generate_song_data_beam.coverage" NAME="generate_song_data_beam Coverage Results" MODIFIED="1684272958995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>
