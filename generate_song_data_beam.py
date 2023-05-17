@@ -31,99 +31,97 @@ import song_utils
 
 FLAGS = flags.FLAGS
 
-input_batches = ["/content/drive/MyDrive/notesequences/notesequences_batch_1.tfrecord",
-                 "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord",
-                 "/content/drive/MyDrive/notesequences/notesequences_batch_3.tfrecord",
-                 "/content/drive/MyDrive/notesequences/notesequences_batch_4.tfrecord"
-                 ]
-output_batches = ["/content/drive/MyDrive/notesequences/outputs_batch_1.tfrecord",
-                 "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord",
-                 "/content/drive/MyDrive/notesequences/outputs_batch_3.tfrecord",
-                 "/content/drive/MyDrive/notesequences/outputs_batch_4.tfrecord"
-                 ]
-for in_, out_ in zip(input_batches, output_batches):
 
-    flags.DEFINE_string(
-        'pipeline_options', '--runner=DirectRunner',
-        'Command line flags to use in constructing the Beam pipeline options.')
+class EncodeSong(beam.DoFn):
+  """Encode song into MusicVAE embeddings."""
 
-    # Model
-    flags.DEFINE_string('model', 'melody-2-big', 'Model configuration.')
-    flags.DEFINE_string('checkpoint', './musicvae_ckpt/cat-mel_2bar_big.tar',
-                        'Model checkpoint.')
+  def setup(self):
+    logging.info('Loading pre-trained model %s', FLAGS.model)
+    self.model_config = config.MUSIC_VAE_CONFIG[FLAGS.model]
+    self.model = TrainedModel(self.model_config,
+                              batch_size=1,
+                              checkpoint_dir_or_path=FLAGS.checkpoint)
 
-    # Data transformation
-    flags.DEFINE_enum('mode', 'melody', ['melody', 'multitrack'],
-                      'Data generation mode.')
-    flags.DEFINE_string('input', in_, 'Path to tfrecord files.')
-    flags.DEFINE_string('output', out_, 'Output path.')
+  def process(self, ns):
+    logging.info('Processing %s::%s (%f)', ns.id, ns.filename, ns.total_time)
+    if ns.total_time > 60 * 60:
+      logging.info('Skipping notesequence with >1 hour duration')
+      Metrics.counter('EncodeSong', 'skipped_long_song').inc()
+      return
 
+    Metrics.counter('EncodeSong', 'encoding_song').inc()
 
-    class EncodeSong(beam.DoFn):
-      """Encode song into MusicVAE embeddings."""
+    if FLAGS.mode == 'melody':
+      chunk_length = 2
+      melodies = song_utils.extract_melodies(ns)
+      if not melodies:
+        Metrics.counter('EncodeSong', 'extracted_no_melodies').inc()
+        return
+      Metrics.counter('EncodeSong', 'extracted_melody').inc(len(melodies))
+      songs = [
+          song_utils.Song(melody, self.model_config.data_converter,
+                          chunk_length) for melody in melodies
+      ]
+      encoding_matrices = song_utils.encode_songs(self.model, songs)
+    elif FLAGS.mode == 'multitrack':
+      chunk_length = 1
+      song = song_utils.Song(ns,
+                             self.model_config.data_converter,
+                             chunk_length,
+                             multitrack=True)
+      encoding_matrices = song_utils.encode_songs(self.model, [song])
+    else:
+      raise ValueError(f'Unsupported mode: {FLAGS.mode}')
 
-      def setup(self):
-        logging.info('Loading pre-trained model %s', FLAGS.model)
-        self.model_config = config.MUSIC_VAE_CONFIG[FLAGS.model]
-        self.model = TrainedModel(self.model_config,
-                                  batch_size=1,
-                                  checkpoint_dir_or_path=FLAGS.checkpoint)
-
-      def process(self, ns):
-        logging.info('Processing %s::%s (%f)', ns.id, ns.filename, ns.total_time)
-        if ns.total_time > 60 * 60:
-          logging.info('Skipping notesequence with >1 hour duration')
-          Metrics.counter('EncodeSong', 'skipped_long_song').inc()
-          return
-
-        Metrics.counter('EncodeSong', 'encoding_song').inc()
-
-        if FLAGS.mode == 'melody':
-          chunk_length = 2
-          melodies = song_utils.extract_melodies(ns)
-          if not melodies:
-            Metrics.counter('EncodeSong', 'extracted_no_melodies').inc()
-            return
-          Metrics.counter('EncodeSong', 'extracted_melody').inc(len(melodies))
-          songs = [
-              song_utils.Song(melody, self.model_config.data_converter,
-                              chunk_length) for melody in melodies
-          ]
-          encoding_matrices = song_utils.encode_songs(self.model, songs)
-        elif FLAGS.mode == 'multitrack':
-          chunk_length = 1
-          song = song_utils.Song(ns,
-                                 self.model_config.data_converter,
-                                 chunk_length,
-                                 multitrack=True)
-          encoding_matrices = song_utils.encode_songs(self.model, [song])
-        else:
-          raise ValueError(f'Unsupported mode: {FLAGS.mode}')
-
-        for matrix in encoding_matrices:
-          assert matrix.shape[0] == 3 and matrix.shape[-1] == 512
-          if matrix.shape[1] == 0:
-            Metrics.counter('EncodeSong', 'skipped_matrix').inc()
-            continue
-          Metrics.counter('EncodeSong', 'encoded_matrix').inc()
-          yield pickle.dumps(matrix)
+    for matrix in encoding_matrices:
+      assert matrix.shape[0] == 3 and matrix.shape[-1] == 512
+      if matrix.shape[1] == 0:
+        Metrics.counter('EncodeSong', 'skipped_matrix').inc()
+        continue
+      Metrics.counter('EncodeSong', 'encoded_matrix').inc()
+      yield pickle.dumps(matrix)
 
 
-    def main(argv):
-      del argv  # unused
+def main(argv):
+  del argv  # unused
 
-      pipeline_options = beam.options.pipeline_options.PipelineOptions(
-          FLAGS.pipeline_options.split(','))
+  pipeline_options = beam.options.pipeline_options.PipelineOptions(
+      FLAGS.pipeline_options.split(','))
 
-      with beam.Pipeline(options=pipeline_options) as p:
-        p |= 'tfrecord_list' >> beam.Create(tf.io.gfile.glob(FLAGS.input))
-        p |= 'read_tfrecord' >> beam.io.tfrecordio.ReadAllFromTFRecord(
-            coder=beam.coders.ProtoCoder(note_seq.NoteSequence))
-        p |= 'shuffle_input' >> beam.Reshuffle()
-        p |= 'encode_song' >> beam.ParDo(EncodeSong())
-        p |= 'shuffle_output' >> beam.Reshuffle()
-        p |= 'write' >> beam.io.WriteToTFRecord(FLAGS.output)
+  with beam.Pipeline(options=pipeline_options) as p:
+    p |= 'tfrecord_list' >> beam.Create(tf.io.gfile.glob(FLAGS.input))
+    p |= 'read_tfrecord' >> beam.io.tfrecordio.ReadAllFromTFRecord(
+        coder=beam.coders.ProtoCoder(note_seq.NoteSequence))
+    p |= 'shuffle_input' >> beam.Reshuffle()
+    p |= 'encode_song' >> beam.ParDo(EncodeSong())
+    p |= 'shuffle_output' >> beam.Reshuffle()
+    p |= 'write' >> beam.io.WriteToTFRecord(FLAGS.output)
 
 
 if __name__ == '__main__':
-  app.run(main)
+    input_batches = ["/content/drive/MyDrive/notesequences/notesequences_batch_1.tfrecord",
+                     "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord",
+                     "/content/drive/MyDrive/notesequences/notesequences_batch_3.tfrecord",
+                     "/content/drive/MyDrive/notesequences/notesequences_batch_4.tfrecord"
+                     ]
+    output_batches = ["/content/drive/MyDrive/notesequences/outputs_batch_1.tfrecord",
+                      "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord",
+                      "/content/drive/MyDrive/notesequences/outputs_batch_3.tfrecord",
+                      "/content/drive/MyDrive/notesequences/outputs_batch_4.tfrecord"]
+
+    for in_, out_ in zip(input_batches, output_batches):
+        flags.DEFINE_string(
+            'pipeline_options', '--runner=DirectRunner',
+            'Command line flags to use in constructing the Beam pipeline options.')
+
+        # Model
+        flags.DEFINE_string('model', 'melody-2-big', 'Model configuration.')
+        flags.DEFINE_string('checkpoint', './cat-mel_2bar_big.tar',
+                            'Model checkpoint.')
+
+        # Data transformation
+        flags.DEFINE_enum('mode', 'melody', ['melody', 'multitrack'],
+                          'Data generation mode.')
+        flags.DEFINE_string('input', in_, 'Path to tfrecord files.')
+        flags.DEFINE_string('output', out_, 'Output path.')
+        app.run(main)

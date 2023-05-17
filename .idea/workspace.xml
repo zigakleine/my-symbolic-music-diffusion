@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="596885b4-d0a5-4bf4-bd63-298e797ee9a2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/my-symbolic-music-diffusion.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate_song_data_beam.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/decode_dataset_beam.py" beforeDir="false" afterPath="$PROJECT_DIR$/decode_dataset_beam.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate_compressed_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_compressed_transform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate_song_data_beam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/mytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mytest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/sample_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sample_audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/transform_encoded_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/transform_encoded_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/song_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/song_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_song_data_beam.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_song_data_beam.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +205,7 @@
       <workItem from="1684193580265" duration="1539000" />
       <workItem from="1684255115007" duration="7611000" />
       <workItem from="1684338824811" duration="204000" />
-      <workItem from="1684339506893" duration="253000" />
+      <workItem from="1684339506893" duration="996000" />
     </task>
     <servers />
   </component>
