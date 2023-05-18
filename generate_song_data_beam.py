@@ -99,12 +99,12 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    input_batches = ["/content/drive/MyDrive/notesequences/notesequences_batch_1.tfrecord",
+    input_batches = [
                      "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord",
                      "/content/drive/MyDrive/notesequences/notesequences_batch_3.tfrecord",
                      "/content/drive/MyDrive/notesequences/notesequences_batch_4.tfrecord"
                      ]
-    output_batches = ["/content/drive/MyDrive/notesequences/outputs_batch_1.tfrecord",
+    output_batches = [
                       "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord",
                       "/content/drive/MyDrive/notesequences/outputs_batch_3.tfrecord",
                       "/content/drive/MyDrive/notesequences/outputs_batch_4.tfrecord"]
