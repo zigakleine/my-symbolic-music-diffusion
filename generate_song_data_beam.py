@@ -31,6 +31,24 @@ import song_utils
 
 FLAGS = flags.FLAGS
 
+in_ = "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord"
+out_ = "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord"
+
+flags.DEFINE_string(
+    'pipeline_options', '--runner=DirectRunner',
+    'Command line flags to use in constructing the Beam pipeline options.')
+
+# Model
+flags.DEFINE_string('model', 'melody-2-big', 'Model configuration.')
+flags.DEFINE_string('checkpoint', './cat-mel_2bar_big.tar',
+                    'Model checkpoint.')
+
+# Data transformation
+flags.DEFINE_enum('mode', 'melody', ['melody', 'multitrack'],
+                  'Data generation mode.')
+flags.DEFINE_string('input', in_, 'Path to tfrecord files.')
+flags.DEFINE_string('output', out_, 'Output path.')
+
 
 class EncodeSong(beam.DoFn):
   """Encode song into MusicVAE embeddings."""
@@ -99,27 +117,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    input_batches = ["/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord"]
-                     # "/content/drive/MyDrive/notesequences/notesequences_batch_3.tfrecord",
-                     # "/content/drive/MyDrive/notesequences/notesequences_batch_4.tfrecord"]
 
-    output_batches = ["/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord"]
-                      # "/content/drive/MyDrive/notesequences/outputs_batch_3.tfrecord",
-                      # "/content/drive/MyDrive/notesequences/outputs_batch_4.tfrecord"]
-
-    for in_, out_ in zip(input_batches, output_batches):
-        flags.DEFINE_string(
-            'pipeline_options', '--runner=DirectRunner',
-            'Command line flags to use in constructing the Beam pipeline options.')
-
-        # Model
-        flags.DEFINE_string('model', 'melody-2-big', 'Model configuration.')
-        flags.DEFINE_string('checkpoint', './cat-mel_2bar_big.tar',
-                            'Model checkpoint.')
-
-        # Data transformation
-        flags.DEFINE_enum('mode', 'melody', ['melody', 'multitrack'],
-                          'Data generation mode.')
-        flags.DEFINE_string('input', in_, 'Path to tfrecord files.')
-        flags.DEFINE_string('output', out_, 'Output path.')
-        app.run(main)
+    app.run(main)
