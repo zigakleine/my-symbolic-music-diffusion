@@ -31,8 +31,8 @@ import song_utils
 
 FLAGS = flags.FLAGS
 
-in_ = "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord"
-out_ = "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord"
+out_ = "/content/drive/MyDrive/notesequences/outputs_batch_2.tfrecord"
+in_ = "/content/drive/MyDrive/notesequences/notesequences_batch_2.tfrecord"
 
 flags.DEFINE_string(
     'pipeline_options', '--runner=DirectRunner',
