@@ -206,7 +206,8 @@
       <workItem from="1684255115007" duration="7611000" />
       <workItem from="1684338824811" duration="204000" />
       <workItem from="1684339506893" duration="1840000" />
-      <workItem from="1684389331713" duration="35000" />
+      <workItem from="1684389331713" duration="95000" />
+      <workItem from="1684391119424" duration="46000" />
     </task>
     <servers />
   </component>
@@ -276,10 +277,10 @@
     </state>
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1684185318374" />
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.23.1440.812@0.23.1440.812" timestamp="1684076624843" />
-    <state x="397" y="277" key="com.intellij.ide.util.TipDialog" timestamp="1684389332200">
+    <state x="397" y="277" key="com.intellij.ide.util.TipDialog" timestamp="1684391119854">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="277" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1684389332200" />
+    <state x="397" y="277" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1684391119854" />
     <state x="378" y="212" width="683" height="476" key="find.popup" timestamp="1684058677037">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
